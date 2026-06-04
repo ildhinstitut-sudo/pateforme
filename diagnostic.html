@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnostic DEUTSCHHAUS CV</title>
+  <style>
+    body{font-family:system-ui,Arial,sans-serif;background:#f8fafc;color:#0f172a;margin:0;padding:24px} .card{max-width:860px;margin:auto;background:white;border:1px solid #e2e8f0;border-radius:18px;padding:24px;box-shadow:0 10px 30px rgba(15,23,42,.08)} code{background:#f1f5f9;padding:2px 6px;border-radius:6px}.ok{color:#047857}.bad{color:#b91c1c} pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Diagnostic DEUTSCHHAUS CV Platform</h1>
+    <p>Si cette page s’affiche, le dossier <code>dist</code> est bien publié.</p>
+    <p>Test de la fonction Netlify : <strong id="status">en cours...</strong></p>
+    <pre id="result"></pre>
+    <p><a href="/">Retour à l’accueil</a></p>
+  </main>
+  <script>
+    fetch('/api/health').then(r => r.json().then(j => ({ ok: r.ok, data: j }))).then(({ok,data}) => {
+      document.getElementById('status').textContent = ok ? 'fonction disponible' : 'fonction indisponible';
+      document.getElementById('status').className = ok ? 'ok' : 'bad';
+      document.getElementById('result').textContent = JSON.stringify(data, null, 2);
+    }).catch(error => {
+      document.getElementById('status').textContent = 'fonction indisponible';
+      document.getElementById('status').className = 'bad';
+      document.getElementById('result').textContent = error.message;
+    });
+  </script>
+</body>
+</html>
