@@ -1,0 +1,27 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/formulaire/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/galerie/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
